@@ -7,21 +7,170 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mcewok.connectfour.MainActivity">
+    tools:context="com.mcewok.connectfour.MainActivity"
+    android:background="#4c4dc0"
+    android:visibility="visible"
+    android:id="@+id/relativeLayout">
 
     <GridView
-        android:layout_width="350dp"
-        android:layout_height="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
         android:id="@+id/playingGrid"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:numColumns="7" />
+        android:numColumns="auto_fit"
+        android:columnWidth="39.5dp"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="3dp"
+        android:stretchMode="spacingWidthUniform"
+        android:background="@drawable/playingboard"
+        android:visibility="invisible" />
 
     <ImageView
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:id="@+id/playingBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startLogo"
+        android:src="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anytime"
+        android:id="@+id/tagAnytime"
+        android:textSize="50sp"
+        android:layout_alignBottom="@+id/playingGrid"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ebcf18"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anyplace"
+        android:id="@+id/tagAnyplace"
+        android:layout_below="@+id/playingGrid"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ebcf18"
+        android:textSize="50sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created By"
+        android:id="@+id/createdBy"
+        android:textColor="#f9e611"
+        android:textSize="50sp"
+        android:layout_above="@+id/playingGrid"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="McEwok Games"
+        android:id="@+id/mcewokGames"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/playingboard" />
+        android:textColor="#f9e611"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Number of Players:"
+        android:id="@+id/enterNumber"
+        android:textColor="#f9e611"
+        android:textSize="31sp"
+        android:layout_above="@+id/mcewokGames"
+        android:layout_alignRight="@+id/playingGrid"
+        android:layout_alignEnd="@+id/playingGrid"
+        android:visibility="gone" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/numberPlayers"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#f9e611"
+        android:visibility="gone"
+        android:textSize="31sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press Logo to Start"
+        android:id="@+id/logoStart"
+        android:textColor="#ebcf18"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press Here to Continue"
+        android:id="@+id/pressContinue"
+        android:layout_below="@+id/tagAnytime"
+        android:layout_centerHorizontal="true"
+        android:textColor="#f9e611"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player One Enter Your Name"
+        android:id="@+id/playerOneEnterTxt"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="149dp"
+        android:textColor="#ebcf18"
+        android:textSize="27sp"
+        android:visibility="invisible" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/playerOneEnterEdt"
+        android:textColor="#ebcf18"
+        android:textSize="27sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/playerEnterBtn"
+        android:layout_below="@+id/playerOneEnterEdt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="30sp"
+        android:background="#ebcf18"
+        android:textColor="#f01c1c"
+        android:nestedScrollingEnabled="false"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player Two Enter Your Name"
+        android:id="@+id/playerTwoEnterTxt"
+        android:layout_alignBottom="@+id/playerOneEnterTxt"
+        android:layout_centerHorizontal="true"
+        android:textSize="27sp"
+        android:textColor="#ebcf18"
+        android:visibility="invisible" />
 </RelativeLayout>

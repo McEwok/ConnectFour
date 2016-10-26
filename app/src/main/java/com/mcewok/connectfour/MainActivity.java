@@ -2,45 +2,51 @@ package com.mcewok.connectfour;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
-public class MainActivity extends AppCompatActivity {
-    ArrayList<ImageView> dotsList = new ArrayList<ImageView>();
-    GridView _playingGrid;
-    int turn = 0;
-    Dots _dots = new Dots();
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicIntegerArray;
+
+public class MainActivity extends AppCompatActivity {//implements AdapterView.OnItemClickListener {
+    public ArrayList<Integer> _Items = new ArrayList<>();
+    GridView playingBoard;
+    ImageView _PickedDot;
+    ImageView _StartLogo;
+    TextView _TagAnytime;
+    TextView _TagAnyplace;
+
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        _playingGrid = (GridView) findViewById(R.id.playingGrid);
-
-        for(int x = 0; x < 6; x++) {
-            for(int y = 0; y < 7; y++) {
-                dotsList.add(new ImageView(this));
-            }
+        //GetDotResponsePane _GetDotResponsePane = new GetDotResponsePane(this);
+        StartScreen _StartScreen = new StartScreen(this);
+        PlayerInformation _PlayerInformation = new PlayerInformation(this);
+        playingBoard = (GridView) findViewById(R.id.playingGrid);
+        playingBoard.setAdapter(new DotAdapter(this));
+        for(int i = 0; i < 42; i++) {
+            _Items.add(R.drawable.reddot);
         }
-
-        turn = 1;
-
-        DotsAdapter _dotsAdapter = new DotsAdapter(this, dotsList, turn);
-        _playingGrid.setAdapter(_dotsAdapter);
-
-        _playingGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                dotsList.get(pos).setImageResource(_dots.getRedDotImage());
-                Toast.makeText(getApplicationContext(), "Square: " + pos, Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }
