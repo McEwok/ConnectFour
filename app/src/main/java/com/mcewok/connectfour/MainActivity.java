@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {//implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //GetDotResponsePane _GetDotResponsePane = new GetDotResponsePane(this);
         StartScreen _StartScreen = new StartScreen(this);
         PlayerInformation _PlayerInformation = new PlayerInformation(this);
         playingBoard = (GridView) findViewById(R.id.playingGrid);
