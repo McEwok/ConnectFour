@@ -21,15 +21,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
-public class MainActivity extends AppCompatActivity {//implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements I_MessageHandler{
     public ArrayList<Integer> _Items = new ArrayList<>();
     GridView playingBoard;
     ImageView _PickedDot;
     ImageView _StartLogo;
     TextView _TagAnytime;
     TextView _TagAnyplace;
+    private I_Communicator mCommunicator;
+    private Hub communicationHub;
 
+    public MainActivity() {
+        mCommunicator = new ScreenChanger();
+    }
 
+    //Used by Unit Test only
+
+    public MainActivity(I_Communicator communicator) {
+        if(communicator == null) {
+            mCommunicator = new ScreenChanger();
+        }
+    }
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -40,12 +52,24 @@ public class MainActivity extends AppCompatActivity {//implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StartScreen _StartScreen = new StartScreen(this);
-        PlayerInformation _PlayerInformation = new PlayerInformation(this);
+
+        communicationHub = new Hub();
+        mCommunicator.Initialize(this, communicationHub);
+        communicationHub.RegisterMsgr(this, CommunicatorEvents.StartScreenEnter);
+        setupScreens();
+
+        StartScreen _StartScreen = new StartScreen(this, communicationHub);
+        CreatedByScreen _CreatedByScreen = new CreatedByScreen(this, communicationHub);
+        PlayerInformation _PlayerInformation = new PlayerInformation(this, communicationHub);
         playingBoard = (GridView) findViewById(R.id.playingGrid);
         playingBoard.setAdapter(new DotAdapter(this));
         for(int i = 0; i < 42; i++) {
             _Items.add(R.drawable.reddot);
         }
+    }
+
+    @Override
+    public void handleMessage(CommunicatorEvents eventType, String messsage) {
+
     }
 }
